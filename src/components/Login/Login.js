@@ -57,6 +57,11 @@ const Login = () => {
             const passwordHasNumber = /\d{1}/.test(e.target.value);
             isFieldValid = isPasswordValid && passwordHasNumber;
         }
+        if (e.target.name === 'confirm-password') {
+            const isPasswordValid = e.target.value.length > 6;
+            const passwordHasNumber = /\d{1}/.test(e.target.value);
+            isFieldValid = isPasswordValid && passwordHasNumber;
+        }
         if (isFieldValid) {
             const newUserInfo = { ...user };
             newUserInfo[e.target.name] = e.target.value;
@@ -94,8 +99,9 @@ const Login = () => {
                         <br />
                         {newUser && <div><input type="password" name="confirm-password" onBlur={handleBlur} placeholder="Confirm Password" required /><br /></div>}
                         <input type="submit" value={newUser ? 'Register' : 'Log In'} />
-                        {newUser ? <p>Don't have an account? <span className="clickToChange" onClick={() => setNewUser(!newUser)}>Create Account</span> </p> :
-                         <p>Already have an account? <span className="clickToChange" onClick={() => setNewUser(!newUser)}>Log In</span> </p> }
+                        {newUser ? 
+                         <p>Already have an account? <span className="clickToChange" onClick={() => setNewUser(!newUser)}>Log In</span> </p> :
+                         <p>Don't have an account? <span className="clickToChange" onClick={() => setNewUser(!newUser)}>Create Account</span> </p> }
 
                     </form>
                     <p style={{ color: 'red' }}>{user.error}</p>
