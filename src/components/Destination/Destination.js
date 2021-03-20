@@ -9,8 +9,24 @@ import './Destination.css'
 const Destination = () => {
 
     const [transports, setTransports] = useState([]);
+    const [startFrom, setStartFrom] = useState('');
+    const [endTo, setEndTo] = useState('');
     const [click, setClick] = useState(false);
     useEffect(() => setTransports(transportData), [])
+
+    const getValue = (id) => {
+        const value = document.getElementById(`${id}`).value;
+        return value;
+    }
+    const handleSearchClick = () => {
+       const from = getValue('pickFrom'); 
+       const to = getValue('pickTo');
+       if(from.length>1 && to.length>1){
+           setStartFrom(from);
+           setEndTo(to);
+           setClick(!click)
+       }
+    }
 
     const { transportType } = useParams();
     const transport = transportData.find(tr => tr.transportType === transportType);
@@ -18,16 +34,22 @@ const Destination = () => {
         <div className="d-flex container-fluid row align-items-center m-auto">
             <div className="col-11 col-md-5 col-lg-4 text-center destination m-auto">
                 <div className="destination-card">
-                    <label for="pickFrom" className="text-left">Pick from</label><br />
-                    <input type="text" name="pickFrom" placeholder="Pick From" />
-                    <br />
-                    <label for="pickTo" className="text-left">Pick To</label><br />
-                    <input type="text" name="pickTo" placeholder="Pick To" />
-                    <br />
-                    <br />
-                    
-                    {!click && <button onClick={() => setClick(!click)}>search</button>}
+                   {!click && <div>
+                        <label for="pickFrom" className="text-left">Pick from</label><br />
+                        <input type="text" name="pickFrom" id="pickFrom" placeholder="Pick From" />
+                        <br />
+                        <label for="pickTo" className="text-left">Pick To</label><br />
+                        <input type="text" name="pickTo" id="pickTo" placeholder="Pick To" />
+                        <br />
+                        <br />
+                        <button onClick={handleSearchClick}>search</button>
+
+                    </div>}
                     {click && <div className="d-flex flex-column">
+                        <div>
+                            <p>Pick From: {startFrom}</p>
+                            <p>Pick To: {endTo}</p>
+                        </div>
                         <div className="searchResult">
                             <img className="mx-4 smallImage" src={transport.imageURL} alt="" srcset="" />
                             <span>{transportType}</span>
