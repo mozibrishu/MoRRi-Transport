@@ -1,0 +1,25 @@
+[{
+    "id": 1,
+    "transportType": "bike",
+    "fare": "20",
+    "numOfPerson": "2",
+    "imageURL": "http://dummyimage.com/162x159.bmp/dddddd/000000"
+  }, {
+    "id": 2,
+    "transportType": "Car",
+    "fare": "50",
+    "numOfPerson": "4",
+    "imageURL": "http://dummyimage.com/127x182.jpg/dddddd/000000"
+  }, {
+    "id": 3,
+    "transportType": "Bus",
+    "fare": "150",
+    "numOfPerson": "20",
+    "imageURL": "http://dummyimage.com/193x223.bmp/dddddd/000000"
+  }, {
+    "id": 4,
+    "transportType": "train",
+    "fare": "400",
+    "numOfPerson": "50",
+    "imageURL": "http://dummyimage.com/171x113.jpg/5fa2dd/ffffff"
+  }]
