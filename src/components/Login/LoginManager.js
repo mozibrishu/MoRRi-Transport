@@ -90,3 +90,10 @@ export const handleSignOut = () => {
         });
 }
 
+export const getValue = (id) => {
+    const value = document.getElementById(`${id}`).value;
+    return value;
+}
+
+export const displayError = id => { document.getElementById(`${id}`).style.display = 'block'}
+export const hideError = id => { document.getElementById(`${id}`).style.display = 'none'}

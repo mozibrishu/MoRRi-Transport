@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useContext } from 'react';
 import { UserContext } from '../../App';
 import { useHistory, useLocation } from 'react-router-dom';
-import { initializeLoginFramework, handleGoogleSignIn, handleSignOut, signInWithEmailAndPassword, createUserWithEmailAndPassword } from './LoginManager';
+import { initializeLoginFramework, handleGoogleSignIn, handleSignOut, signInWithEmailAndPassword, createUserWithEmailAndPassword, getValue, hideError, displayError } from './LoginManager';
 import './Login.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGoogle } from '@fortawesome/free-brands-svg-icons'
@@ -49,16 +49,9 @@ const Login = () => {
         }
     }
 
-    const setValue = (id,value) => {
-        document.getElementById(id).value = value;
-    }
-    const getValue = (id) => {
-        const value = document.getElementById(`${id}`).value;
-        return value;
-    }
 
-    const displayError = id => { document.getElementById(`${id}`).style.display = 'block'}
-    const hideError = id => { document.getElementById(`${id}`).style.display = 'none'}
+
+
     const handleBlur = (e) => {
         let isFieldValid = true;
         if (e.target.name === 'name') {
@@ -147,7 +140,7 @@ const Login = () => {
                     <p style={{ color: 'red' }}>{user.error}</p>
                     {user.success && <p style={{ color: 'green' }}>User {newUser ? 'created' : 'Logged In'} successfully</p>}
                 </div>
-                <hr/>
+                
                 <span onClick={googleSignIn}>Join With <br/><br/> <button> <FontAwesomeIcon icon={faGoogle} className="google" /></button></span>
             </div>
         </div>

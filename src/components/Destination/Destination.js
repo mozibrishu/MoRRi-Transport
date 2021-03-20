@@ -5,6 +5,7 @@ import transportData from '../../data/data.json'
 import mapImage from '../../images/Map.png'
 import peopleIcon from '../../images/peopleicon.png'
 import './Destination.css'
+import { displayError, getValue, hideError } from '../Login/LoginManager';
 
 const Destination = () => {
 
@@ -14,17 +15,17 @@ const Destination = () => {
     const [click, setClick] = useState(false);
     useEffect(() => setTransports(transportData), [])
 
-    const getValue = (id) => {
-        const value = document.getElementById(`${id}`).value;
-        return value;
-    }
+
     const handleSearchClick = () => {
        const from = getValue('pickFrom'); 
        const to = getValue('pickTo');
        if(from.length>1 && to.length>1){
            setStartFrom(from);
            setEndTo(to);
-           setClick(!click)
+           setClick(!click);
+           hideError("searchError");
+       }else{
+           displayError("searchError");
        }
     }
 
@@ -41,6 +42,7 @@ const Destination = () => {
                         <label for="pickTo" className="text-left">Pick To</label><br />
                         <input type="text" name="pickTo" id="pickTo" placeholder="Pick To" />
                         <br />
+                        <p id="searchError" className="error">*Enter Value.</p>
                         <br />
                         <button onClick={handleSearchClick}>search</button>
 
