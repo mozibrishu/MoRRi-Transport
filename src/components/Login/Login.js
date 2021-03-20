@@ -4,7 +4,7 @@ import { UserContext } from '../../App';
 import { useHistory, useLocation } from 'react-router-dom';
 import { initializeLoginFramework, handleGoogleSignIn, handleSignOut, signInWithEmailAndPassword, createUserWithEmailAndPassword } from './LoginManager';
 import './Login.css'
-import { useForm } from 'react-hook-form';
+
 
 const Login = () => {
     const [newUser, setNewUser] = useState(false);
@@ -15,7 +15,7 @@ const Login = () => {
         password: '',
         photo: ''
     });
-    
+
 
     initializeLoginFramework();
 
@@ -81,22 +81,26 @@ const Login = () => {
     }
 
     return (
-        <div className="d-flex container-fluid row align-items-center">
-            <div className="login col-11 col-md-9 col-lg-7 text-center">
-                <h1>Our own Authentication</h1>
-                <input type="checkbox" onChange={() => setNewUser(!newUser)} name="newUser" id="" />
-                <label htmlFor="newUser">New User Sign up</label>
-                <form onSubmit={handleSubmit}>
-                    {newUser && <input name="name" type="text" onBlur={handleBlur} placeholder="Your name" />}
-                    <br />
-                    <input type="text" name="email" onBlur={handleBlur} placeholder="Your Email address" required />
-                    <br />
-                    <input type="password" name="password" onBlur={handleBlur} placeholder="Your Password" required />
-                    <br />
-                    <input type="submit" value={newUser ? 'Sign up' : 'Sign in'} />
-                </form>
-                <p style={{ color: 'red' }}>{user.error}</p>
-                {user.success && <p style={{ color: 'green' }}>User {newUser ? 'created' : 'Logged In'} successfully</p>}
+        <div className="container-fluid row align-items-center">
+            <div className="login-container col-11 col-md-9 col-lg-7 text-center">
+                <div className="login">
+                    {newUser ? <h2>Create Account</h2> : <h2>Log In</h2> }
+                    <form onSubmit={handleSubmit}>
+                        {newUser && <input name="name" type="text" onBlur={handleBlur} placeholder="Name" />}
+                        <br />
+                        <input type="text" name="email" onBlur={handleBlur} placeholder="Email" required />
+                        <br />
+                        <input type="password" name="password" onBlur={handleBlur} placeholder="Password" required />
+                        <br />
+                        {newUser && <div><input type="password" name="confirm-password" onBlur={handleBlur} placeholder="Confirm Password" required /><br /></div>}
+                        <input type="submit" value={newUser ? 'Register' : 'Log In'} />
+                        {newUser ? <p>Don't have an account? <span className="clickToChange" onClick={() => setNewUser(!newUser)}>Create Account</span> </p> :
+                         <p>Already have an account? <span className="clickToChange" onClick={() => setNewUser(!newUser)}>Log In</span> </p> }
+
+                    </form>
+                    <p style={{ color: 'red' }}>{user.error}</p>
+                    {user.success && <p style={{ color: 'green' }}>User {newUser ? 'created' : 'Logged In'} successfully</p>}
+                </div>
             </div>
         </div>
     );

@@ -3,23 +3,23 @@
     "transportType": "bike",
     "fare": "20",
     "numOfPerson": "2",
-    "imageURL": "http://dummyimage.com/162x159.bmp/dddddd/000000"
+    "imageURL": "https://i.ibb.co/PwpcYpX/Frame.png"
   }, {
     "id": 2,
     "transportType": "Car",
     "fare": "50",
     "numOfPerson": "4",
-    "imageURL": "http://dummyimage.com/127x182.jpg/dddddd/000000"
+    "imageURL": "https://i.ibb.co/XVjK2TK/Frame-2.png"
   }, {
     "id": 3,
     "transportType": "Bus",
     "fare": "150",
     "numOfPerson": "20",
-    "imageURL": "http://dummyimage.com/193x223.bmp/dddddd/000000"
+    "imageURL": "https://i.ibb.co/VYshF7j/Frame-1.png"
   }, {
     "id": 4,
     "transportType": "train",
     "fare": "400",
     "numOfPerson": "50",
-    "imageURL": "http://dummyimage.com/171x113.jpg/5fa2dd/ffffff"
+    "imageURL": "https://i.ibb.co/ck8Cw37/Group.png"
   }]

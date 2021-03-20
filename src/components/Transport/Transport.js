@@ -8,7 +8,7 @@ const Transport = (props) => {
         <div className=" col-12 col-md-6 col-lg-3 text-center transport-card-container">
             <Link to={`/destination/${id}`}>
                 <div className="transport-card">
-                    <img src={imageURL} alt="" srcset="" />
+                    <img className="transportImage" src={imageURL} alt="" srcset="" />
                     <h2>{transportType}</h2>
                 </div>
             </Link>

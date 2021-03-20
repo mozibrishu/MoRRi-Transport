@@ -1,3 +1,19 @@
-.login{
+.login-container{
     margin: auto;
+
+}
+
+.login{
+    width:90%;
+    border: 2px solid red;
+}
+
+.login form input{
+    width:90%;
+    margin: 10px;
+}
+
+.clickToChange{
+    cursor: pointer;
+    color: orangered;
 }
