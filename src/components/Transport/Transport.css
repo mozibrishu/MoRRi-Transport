@@ -1,0 +1,11 @@
+.transport-card-container{
+    margin: 0px;
+}
+
+.transport-card{
+    width: 95%;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #F8F7F5;
+    box-shadow:1px 3px 10px gray;
+}
