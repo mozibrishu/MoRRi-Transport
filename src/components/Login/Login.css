@@ -17,3 +17,11 @@
     cursor: pointer;
     color: orangered;
 }
+
+.error{
+    color: red;
+    display: none;
+}
+.google{
+    font-size:xx-large;
+}

@@ -1,0 +1,13 @@
+.smallImage{
+    width:15%;
+}
+
+.searchResult{
+    border:2px solid teal;
+    border-radius:10px;
+    margin: 5px;
+}
+
+.smallIcon{
+    width:5%;
+}
