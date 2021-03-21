@@ -4,8 +4,10 @@
 }
 
 .login{
-    width:90%;
-    border: 2px solid red;
+    width: 90%;
+    border-radius: 10px;
+    background-color: #F8F7F5;
+    box-shadow:1px 3px 10px gray;
 }
 
 .login form input{

@@ -32,8 +32,8 @@ const Destination = () => {
     const { transportType } = useParams();
     const transport = transportData.find(tr => tr.transportType === transportType);
     return (
-        <div className="d-flex container-fluid row align-items-center m-auto">
-            <div className="col-11 col-md-5 col-lg-4 text-center destination m-auto">
+        <div className="d-flex container-fluid row m-auto pt-5">
+            <div className="col-11 col-md-4 col-lg-4 text-center destination m-auto">
                 <div className="destination-card">
                     {!click && <div>
                         <label for="pickFrom" className="text-left">Pick from</label><br />
@@ -76,7 +76,7 @@ const Destination = () => {
                     </div>}
                 </div>
             </div>
-            <div className="col-11 col-md-7 col-lg-5 text-center map m-auto">
+            <div className="col-11 col-md-8 col-lg-5 text-center map m-auto">
                 <img src={mapImage} style={{ width: "80%" }} alt="" srcset="" />
             </div>
         </div>

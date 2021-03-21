@@ -10,18 +10,20 @@ import { faGoogle } from '@fortawesome/free-brands-svg-icons'
 
 const Login = () => {
     const [newUser, setNewUser] = useState(false);
-    const [user, setUser] = useState({
+    let [user, setUser] = useState({
         isSignedIn: false,
         name: '',
         email: '',
         password: '',
         confirmPassword: '',
+        error: '',
+
     });
 
 
     initializeLoginFramework();
 
-    const [loggedInUser, setLoggedInUser] = useContext(UserContext);
+    let [loggedInUser, setLoggedInUser] = useContext(UserContext);
     const history = useHistory();
     const location = useLocation();
     let { from } = location.state || { from: { pathname: "/" } };
@@ -57,39 +59,24 @@ const Login = () => {
         if (e.target.name === 'name') {
             let nameLength = (e.target.value).trim();
             isFieldValid = nameLength.length >= 3;
-            if(isFieldValid) {
-                hideError('nameError');
-            }else {
-                displayError('nameError');
-            }
-            console.log(isFieldValid);
+            isFieldValid ? hideError('nameError') : displayError('nameError');
         }
         if (e.target.name === 'email') {
             isFieldValid = /\S+@\S+\.\S+/.test(e.target.value);
-            if(isFieldValid) {
-                hideError('emailError');
-            }else {
-                displayError('emailError');
-            }
+            isFieldValid ? hideError('emailError') : displayError('emailError');
         }
+
         if (e.target.name === 'password') {
             isFieldValid = e.target.value.length >= 6;
-            if(isFieldValid) {
-                hideError('passwordError');
-            }else {
-                displayError('passwordError');
-            }
-            
+            isFieldValid ? hideError('passwordError') : displayError('passwordError');
         }
+
         if (e.target.name === 'confirmPassword') {
             const password = getValue('password');
             isFieldValid = e.target.value === password;
-            if(isFieldValid) {
-                hideError('confirmPasswordError');
-            }else {
-                displayError('confirmPasswordError');
-            }
+            isFieldValid ? hideError('confirmPasswordError') : displayError('confirmPasswordError');
         }
+
         if (isFieldValid) {
             const newUserInfo = { ...user };
             newUserInfo[e.target.name] = e.target.value;
@@ -99,49 +86,64 @@ const Login = () => {
 
 
     const handleSubmit = (e) => {
-        if (newUser && user.email && user.password) {
-            createUserWithEmailAndPassword(user.name, user.email, user.password)
-                .then(res => {
-                    handleResponse(res, true);
-                })
+        if (newUser) {
+            const password = getValue('password');
+            const email = getValue('email');
+            const name = getValue('name');
+            const confirmPassword = getValue('confirmPassword');
+            if ((name.length >= 3) && (password.length >= 6) && (/\S+@\S+\.\S+/.test(email)) && (password === confirmPassword)) {
+                createUserWithEmailAndPassword(name,email,password)
+                    .then(res => {
+                        handleResponse(res, true);
+                    })
+            }
         }
 
-        if (!newUser && user.email && user.password) {
-            signInWithEmailAndPassword(user.email, user.password)
+        if (!newUser) {
+            const password = getValue('password');
+            const email = getValue('email');
+            if((password.length >= 6) && (/\S+@\S+\.\S+/.test(email))){
+                signInWithEmailAndPassword(email, password)
                 .then(res => {
                     handleResponse(res, true);
                 })
+            }
+            else{
+
+            }
         }
         e.preventDefault();
     }
 
     return (
         <div className="container-fluid row align-items-center">
-            <div className="login-container col-11 col-md-9 col-lg-7 text-center">
-                <div className="login">
-                    {newUser ? <h2>Create Account</h2> : <h2>Log In</h2> }
+            <div className="login-container col-11 col-md-9 col-lg-7 text-center my-5">
+                <div className="login m-auto py-5">
+                    {newUser ? <h2>Create Account</h2> : <h2>Log In</h2>}
                     <form onSubmit={handleSubmit}>
                         {newUser && <input name="name" type="text" id="name" onBlur={handleBlur} placeholder="Name" required />}
-                        <p id="nameError" className="error">*Name Must be at least 3 characters long.</p>
+                        <p id="nameError" className="error my-0">*Name Must be at least 3 characters long.</p>
                         <br />
                         <input type="text" name="email" id="email" onBlur={handleBlur} placeholder="Email" required />
-                        <p id="emailError" className="error">*Email must be "something@Something.something"</p>
+                        <p id="emailError" className="error my-0">*Email must be "something@Something.something"</p>
                         <br />
                         <input type="password" name="password" id="password" onBlur={handleBlur} placeholder="Password" required />
-                        <p id="passwordError" className="error">*Password Must be at least 6 characters long</p><br />
+                        <p id="passwordError" className="error my-0">*Password Must be at least 6 characters long</p><br />
                         {newUser && <div><input type="password" id="confirmPassword" name="confirmPassword" onBlur={handleBlur} placeholder="Confirm Password" required /><br /></div>}
-                        <p id="confirmPasswordError" className="error">Password did not match</p>
+                        <p id="confirmPasswordError" className="error my-0">Password did not match</p>
                         <input type="submit" value={newUser ? 'Register' : 'Log In'} />
-                        {newUser ? 
-                         <p>Already have an account? <span className="clickToChange" onClick={() => setNewUser(!newUser)}>Log In</span> </p> :
-                         <p>Don't have an account? <span className="clickToChange" onClick={() => setNewUser(!newUser)}>Create Account</span> </p> }
+                        <p style={{ color: 'red' }}>{user.error}</p>
+
+                        {newUser ?
+                            <p>Already have an account? <span className="clickToChange" onClick={() => setNewUser(!newUser)}>Log In</span> </p> :
+                            <p>Don't have an account? <span className="clickToChange" onClick={() => setNewUser(!newUser)}>Create Account</span> </p>}
 
                     </form>
                     <p style={{ color: 'red' }}>{user.error}</p>
                     {user.success && <p style={{ color: 'green' }}>User {newUser ? 'created' : 'Logged In'} successfully</p>}
+                    <hr />
+                    <span>Join With <br /><br /> <span onClick={googleSignIn}><FontAwesomeIcon icon={faGoogle} className="google" /></span></span>
                 </div>
-                
-                <span onClick={googleSignIn}>Join With <br/><br/> <button> <FontAwesomeIcon icon={faGoogle} className="google" /></button></span>
             </div>
         </div>
     );
