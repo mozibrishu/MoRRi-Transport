@@ -1,6 +1,6 @@
 [{
     "id": 1,
-    "transportType": "bike",
+    "transportType": "Bike",
     "fare": "20",
     "numOfPerson": "2",
     "imageURL": "https://i.ibb.co/PwpcYpX/Frame.png"
@@ -12,12 +12,24 @@
     "imageURL": "https://i.ibb.co/XVjK2TK/Frame-2.png"
   }, {
     "id": 3,
+    "transportType": "Nano",
+    "fare": "60",
+    "numOfPerson": "5",
+    "imageURL": "https://i.ibb.co/FYSrcPq/nano.png"
+  }, {
+    "id": 4,
+    "transportType": "HiAce",
+    "fare": "100",
+    "numOfPerson": "12",
+    "imageURL": "https://i.ibb.co/SfgFyyZ/hiace.png"
+  }, {
+    "id": 5,
     "transportType": "Bus",
     "fare": "150",
     "numOfPerson": "20",
     "imageURL": "https://i.ibb.co/VYshF7j/Frame-1.png"
   }, {
-    "id": 4,
+    "id": 6,
     "transportType": "train",
     "fare": "400",
     "numOfPerson": "50",

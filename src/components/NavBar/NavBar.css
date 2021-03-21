@@ -5,6 +5,11 @@
 .logoImage{
     width: 2em;
 }
+.title{
+    font-family: 'Allura', cursive;
+    font-size: 1.5em;
+    margin-left: 0;
+}
 
 .cusorPointer{
     cursor: pointer;

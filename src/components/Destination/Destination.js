@@ -31,7 +31,7 @@ const Destination = () => {
         const to = getValue('pickTo');
         const departureDate = getValue('departureDate');
         const departureTime = getValue('departureTime');
-        if (from.length > 1 && to.length > 1) {
+        if (from.length > 1 && to.length > 1 && departureDate !=='' && departureTime !== '') {
             setStartFrom(from);
             setEndTo(to);
             setDepartureDate(departureDate);
@@ -61,12 +61,12 @@ const Destination = () => {
                         <br />
                         <label for="departureTime" className="text-left">Departure Date</label><br />
                         <input type="time" name="departureTime" id="departureTime"/>
-                        <p id="searchError" className="error mb-0 pb-0">*Enter Value.</p>
+                        <p id="searchError" className="error mb-0 pb-0">*Value Required in All Fields.</p>
                         <br />
                         <button className="btn btn-primary mt-3" onClick={handleSearchClick}>search</button>
 
                     </div>}
-                    {click && <div className="d-flex flex-column search-result">
+                    {click && <div className="d-flex flex-column search-result mb-5">
                         <div>
                             <p className="pickFromToFont">Pick From:     {startFrom}</p>
                             <p className="pickFromToFont">Pick To:      {endTo}</p>

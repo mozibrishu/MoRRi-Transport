@@ -18,13 +18,13 @@ const NavBar = () => {
                     <Link to="/home" className="navbar-brand ml-2 mr-1"><img className="logoImage" src={logo} alt="" srcset="" /></Link>
                     <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
                         <li className="nav-item active">
-                            <Link to="/home" className="nav-link">MoRRi Transport</Link>
+                            <Link to="/home" className="nav-link title">MoRRi Transport</Link>
                         </li>
                         <li className="nav-item">
                             <Link to="/home" className="mx-3 text-dark nav-link">Home</Link>
                         </li>
                         <li className="nav-item">
-                            <Link to="/destination/bike" className="mx-3 text-dark nav-link">Destination</Link>
+                            <Link to="/destination/Bike" className="mx-3 text-dark nav-link">Destination</Link>
                         </li>
                     </ul>
 

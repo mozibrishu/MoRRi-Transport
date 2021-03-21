@@ -5,7 +5,7 @@ import './Transport.css'
 const Transport = (props) => {
     const { transportType, imageURL } = props.transport;
     return (
-        <div className=" col-12 col-md-6 col-lg-3 mt-3 text-center transport-card-container">
+        <div className=" col-12 col-md-6 col-lg-4 mt-3 text-center transport-card-container">
             <Link to={`/destination/${transportType}`}>
                 <div className="transport-card">
                     <img className="transportImage" src={imageURL} alt="" srcset="" />
