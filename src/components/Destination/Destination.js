@@ -12,8 +12,11 @@ const Destination = () => {
 
     const [transports, setTransports] = useState([]);
     const [startFrom, setStartFrom] = useState('');
+    const [departureDate,setDepartureDate] = useState('');
+    const [departureTime, setDepartureTime] = useState('');
     const [endTo, setEndTo] = useState('');
     const [click, setClick] = useState(false);
+
     useEffect(() => setTransports(transportData), [])
     const numOfResult =5;
 
@@ -21,9 +24,13 @@ const Destination = () => {
     const handleSearchClick = () => {
         const from = getValue('pickFrom');
         const to = getValue('pickTo');
+        const departureDate = getValue('departureDate');
+        const departureTime = getValue('departureTime');
         if (from.length > 1 && to.length > 1) {
             setStartFrom(from);
             setEndTo(to);
+            setDepartureDate(departureDate);
+            setDepartureTime(departureTime);
             setClick(!click);
             hideError("searchError");
         } else {
@@ -44,15 +51,21 @@ const Destination = () => {
                         <label for="pickTo" className="text-left">Pick To</label><br />
                         <input type="text" name="pickTo" id="pickTo" placeholder="Pick To" />
                         <br />
+                        <label for="departureDate" className="text-left">Departure Date</label><br />
+                        <input type="date" name="departureDate" id="departureDate"/>
+                        <br />
+                        <label for="departureTime" className="text-left">Departure Date</label><br />
+                        <input type="time" name="departureTime" id="departureTime"/>
                         <p id="searchError" className="error mb-0 pb-0">*Enter Value.</p>
                         <br />
-                        <button className="btn btn-primary" onClick={handleSearchClick}>search</button>
+                        <button className="btn btn-primary mt-3" onClick={handleSearchClick}>search</button>
 
                     </div>}
                     {click && <div className="d-flex flex-column search-result">
                         <div>
                             <p className="pickFromToFont">Pick From:     {startFrom}</p>
                             <p className="pickFromToFont">Pick To:      {endTo}</p>
+                            <div><p className="pickFromToFont">Time: {departureTime} Date: {departureDate}</p></div>
                         </div>
                         {[...Array(numOfResult)].map(() => <SearchResult transport = {transport}></SearchResult>)}
                         <SearchResult transport = {transport}></SearchResult>
