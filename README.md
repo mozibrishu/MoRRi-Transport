@@ -1,5 +1,5 @@
 # MoRRi Transport
-It is Transportation Website.\
+It is a Website of a Transportation Company.\
 There are six types of transport.\
 Bike, Car, Nano, HiAce, Bus and Train.\
 We have used private route. So, without login, user cannot input destination.\
