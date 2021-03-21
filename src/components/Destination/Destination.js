@@ -2,11 +2,10 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import transportData from '../../data/data.json'
-import mapImage from '../../images/Map.png'
-import peopleIcon from '../../images/peopleicon.png'
 import './Destination.css'
 import { displayError, getValue, hideError } from '../Login/LoginManager';
 import SearchResult from '../SearchResult/SearchResult';
+import MapSection from '../Map/Map'
 
 const Destination = () => {
 
@@ -19,6 +18,12 @@ const Destination = () => {
 
     useEffect(() => setTransports(transportData), [])
     const numOfResult =5;
+
+    const location = {
+        address: 'Amar Bari: MuhuriGonj',
+        lat: 22.93668,
+        lng: 91.51333,
+      }
 
 
     const handleSearchClick = () => {
@@ -73,7 +78,7 @@ const Destination = () => {
                 </div>
             </div>
             <div className="col-11 col-md-8 col-lg-5 text-center map m-auto">
-                <img src={mapImage} style={{ width: "80%" }} alt="" srcset="" />
+                <MapSection location={location} zoomLevel={14}></MapSection>
             </div>
         </div>
     );
