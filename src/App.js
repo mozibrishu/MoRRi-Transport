@@ -10,8 +10,8 @@ import Destination from './components/Destination/Destination';
 import Home from './components/Home/Home';
 import Login from './components/Login/Login';
 import NotFound from './components/NotFound/NotFound';
-import Header from './components/Header/Header';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
+import NavBar from './components/NavBar/NavBar';
 
 
 export const UserContext = createContext();
@@ -22,7 +22,7 @@ function App() {
     
     <UserContext.Provider value = {[loggedInUser, setLoggedInUser]}>
         <Router>
-        <Header></Header>
+        <NavBar></NavBar>
           <Switch>
             <Route path="/home">
               <Home></Home>

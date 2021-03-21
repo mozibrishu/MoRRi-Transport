@@ -8,7 +8,7 @@ const Home = () => {
 
     useEffect(() => setTransports(transportData), [])
     return (
-        <div className="d-flex container-fluid row align-items-center">
+        <div className="d-flex container justify-content-around row align-items-center mx-auto mt-5 w-100">
             {
                 transports.map(transport => <Transport transport={transport}></Transport>)
             }
