@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import './Transport.css'
 
 const Transport = (props) => {
-    const { id, transportType, imageURL } = props.transport;
+    const { transportType, imageURL } = props.transport;
     return (
         <div className=" col-12 col-md-6 col-lg-3 text-center transport-card-container">
             <Link to={`/destination/${transportType}`}>

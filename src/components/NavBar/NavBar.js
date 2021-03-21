@@ -13,7 +13,7 @@ const NavBar = () => {
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
-                
+
                 <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
                     <Link to="/home" className="navbar-brand ml-2 mr-1"><img className="logoImage" src={logo} alt="" srcset="" /></Link>
                     <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
@@ -29,9 +29,9 @@ const NavBar = () => {
                     </ul>
 
                     <form className="form-inline my-2 my-lg-0">
-                        {loggedInUser.email && <Link to="/home" className="mx-3 text-dark nav-link">{loggedInUser.displayName}</Link>}
-                        {loggedInUser.email ? <span onClick={() => setLoggedInUser({})} className="mx-3 text-dark nav-link">Sign out</span> :
-                            <Link to="/login" className="mx-3 text-dark nav-link">Login</Link>}
+                        {loggedInUser.email && <Link to="/home" className="mr-3 text-dark nav-link">{loggedInUser.displayName}</Link>}
+                        {loggedInUser.email ? <Link to="/login" onClick={() => setLoggedInUser({})} className="cusorPointer mr-3 text-dark nav-link">Sign out</Link> :
+                            <Link to="/login" className="cusorPointer mr-3 text-dark nav-link">Login</Link>}
                     </form>
                 </div>
             </div>

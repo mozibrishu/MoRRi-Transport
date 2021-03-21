@@ -11,3 +11,21 @@
 .smallIcon{
     width:5%;
 }
+
+.pickFromTo, .search-result{
+    width:90%;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #F8F7F5;
+    box-shadow:1px 3px 10px gray;
+}
+
+
+.pickFromTo input{
+    width: 90%;
+}
+
+.pickFromToFont{
+    font-size: x-large;
+    text-align: left;
+}

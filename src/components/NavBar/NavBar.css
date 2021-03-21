@@ -5,3 +5,7 @@
 .logoImage{
     width: 2em;
 }
+
+.cusorPointer{
+    cursor: pointer;
+}

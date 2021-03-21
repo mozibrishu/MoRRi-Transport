@@ -17,9 +17,7 @@ const Login = () => {
         password: '',
         confirmPassword: '',
         error: '',
-
     });
-
 
     initializeLoginFramework();
 
@@ -32,17 +30,16 @@ const Login = () => {
     const googleSignIn = () => {
         handleGoogleSignIn()
             .then(res => {
+                //checking google sign in failed Error 
                 res.success ? handleResponse(res, true) : handleResponse(res, false);
             })
     }
-
     const signOut = () => {
         handleSignOut()
             .then(res => {
                 handleResponse(res, false);
             })
     }
-
     const handleResponse = (res, redirect) => {
         setUser(res);
         setLoggedInUser(res);
@@ -50,9 +47,6 @@ const Login = () => {
             history.replace(from);
         }
     }
-
-
-
 
     const handleBlur = (e) => {
         let isFieldValid = true;
@@ -91,10 +85,15 @@ const Login = () => {
             const email = getValue('email');
             const name = getValue('name');
             const confirmPassword = getValue('confirmPassword');
+            // checking for directly clicked
             if ((name.length >= 3) && (password.length >= 6) && (/\S+@\S+\.\S+/.test(email)) && (password === confirmPassword)) {
-                createUserWithEmailAndPassword(name,email,password)
+                createUserWithEmailAndPassword(name, email, password)
                     .then(res => {
-                        res.success ? handleResponse(res, true) : handleResponse(res, false);
+                        res.success ? signInWithEmailAndPassword(email, password)
+                            .then(res => {
+                                // If Error, Don't redirect
+                                res.success ? handleResponse(res, true) : handleResponse(res, false);
+                            }) : handleResponse(res, false);
                     })
             }
         }
@@ -102,14 +101,11 @@ const Login = () => {
         if (!newUser) {
             const password = getValue('password');
             const email = getValue('email');
-            if((password.length >= 6) && (/\S+@\S+\.\S+/.test(email))){
+            if ((password.length >= 6) && (/\S+@\S+\.\S+/.test(email))) {
                 signInWithEmailAndPassword(email, password)
-                .then(res => {
-                    res.success ? handleResponse(res, true) : handleResponse(res, false);
-                })
-            }
-            else{
-
+                    .then(res => {
+                        res.success ? handleResponse(res, true) : handleResponse(res, false);
+                    })
             }
         }
         e.preventDefault();
@@ -120,6 +116,7 @@ const Login = () => {
             <div className="login-container col-11 col-md-9 col-lg-7 text-center my-5">
                 <div className="login m-auto py-5">
                     {newUser ? <h2>Create Account</h2> : <h2>Log In</h2>}
+
                     <form onSubmit={handleSubmit}>
                         {newUser && <input name="name" type="text" id="name" onBlur={handleBlur} placeholder="Name" required />}
                         <p id="nameError" className="error my-0">*Name Must be at least 3 characters long.</p>
@@ -131,13 +128,13 @@ const Login = () => {
                         <p id="passwordError" className="error my-0">*Password Must be at least 6 characters long</p><br />
                         {newUser && <div><input type="password" id="confirmPassword" name="confirmPassword" onBlur={handleBlur} placeholder="Confirm Password" required /><br /></div>}
                         <p id="confirmPasswordError" className="error my-0">Password did not match</p>
+                        
                         <input type="submit" value={newUser ? 'Register' : 'Log In'} />
                         <p style={{ color: 'red' }}>{user.error}</p>
 
                         {newUser ?
                             <p>Already have an account? <span className="clickToChange" onClick={() => setNewUser(!newUser)}>Log In</span> </p> :
                             <p>Don't have an account? <span className="clickToChange" onClick={() => setNewUser(!newUser)}>Create Account</span> </p>}
-
                     </form>
                     <hr />
                     <span>Join With <br /><br /> <span onClick={googleSignIn}><FontAwesomeIcon icon={faGoogle} className="google" /></span></span>

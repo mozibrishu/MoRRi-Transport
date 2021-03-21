@@ -24,6 +24,7 @@ export const handleGoogleSignIn = () => {
         })
         .catch(error => {
             const newUserInfo = {};
+            // sign in failed error message
             newUserInfo.error = error.message;
             newUserInfo.success = false;
             return newUserInfo;
