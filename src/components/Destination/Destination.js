@@ -17,16 +17,16 @@ const Destination = () => {
 
 
     const handleSearchClick = () => {
-       const from = getValue('pickFrom'); 
-       const to = getValue('pickTo');
-       if(from.length>1 && to.length>1){
-           setStartFrom(from);
-           setEndTo(to);
-           setClick(!click);
-           hideError("searchError");
-       }else{
-           displayError("searchError");
-       }
+        const from = getValue('pickFrom');
+        const to = getValue('pickTo');
+        if (from.length > 1 && to.length > 1) {
+            setStartFrom(from);
+            setEndTo(to);
+            setClick(!click);
+            hideError("searchError");
+        } else {
+            displayError("searchError");
+        }
     }
 
     const { transportType } = useParams();
@@ -35,7 +35,7 @@ const Destination = () => {
         <div className="d-flex container-fluid row align-items-center m-auto">
             <div className="col-11 col-md-5 col-lg-4 text-center destination m-auto">
                 <div className="destination-card">
-                   {!click && <div>
+                    {!click && <div>
                         <label for="pickFrom" className="text-left">Pick from</label><br />
                         <input type="text" name="pickFrom" id="pickFrom" placeholder="Pick From" />
                         <br />
