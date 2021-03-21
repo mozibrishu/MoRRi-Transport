@@ -16,15 +16,17 @@ export const handleGoogleSignIn = () => {
             const { displayName, email } = res.user;
             const signedInUser = {
                 isSignedIn: true,
-                name: displayName,
+                displayName: displayName,
                 email: email,
                 success: true
             };
             return signedInUser;
         })
-        .catch(err => {
-            console.log(err);
-            console.log(err.message);
+        .catch(error => {
+            const newUserInfo = {};
+            newUserInfo.error = error.message;
+            newUserInfo.success = false;
+            return newUserInfo;
         })
 }
 

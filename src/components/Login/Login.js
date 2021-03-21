@@ -32,7 +32,7 @@ const Login = () => {
     const googleSignIn = () => {
         handleGoogleSignIn()
             .then(res => {
-                handleResponse(res, true);
+                res.success ? handleResponse(res, true) : handleResponse(res, false);
             })
     }
 
@@ -94,7 +94,7 @@ const Login = () => {
             if ((name.length >= 3) && (password.length >= 6) && (/\S+@\S+\.\S+/.test(email)) && (password === confirmPassword)) {
                 createUserWithEmailAndPassword(name,email,password)
                     .then(res => {
-                        handleResponse(res, true);
+                        res.success ? handleResponse(res, true) : handleResponse(res, false);
                     })
             }
         }
@@ -105,7 +105,7 @@ const Login = () => {
             if((password.length >= 6) && (/\S+@\S+\.\S+/.test(email))){
                 signInWithEmailAndPassword(email, password)
                 .then(res => {
-                    handleResponse(res, true);
+                    res.success ? handleResponse(res, true) : handleResponse(res, false);
                 })
             }
             else{
@@ -139,8 +139,6 @@ const Login = () => {
                             <p>Don't have an account? <span className="clickToChange" onClick={() => setNewUser(!newUser)}>Create Account</span> </p>}
 
                     </form>
-                    <p style={{ color: 'red' }}>{user.error}</p>
-                    {user.success && <p style={{ color: 'green' }}>User {newUser ? 'created' : 'Logged In'} successfully</p>}
                     <hr />
                     <span>Join With <br /><br /> <span onClick={googleSignIn}><FontAwesomeIcon icon={faGoogle} className="google" /></span></span>
                 </div>
