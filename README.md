@@ -1,11 +1,18 @@
 # MoRRi Transport
 It is a Website of a Transportation Company.\
-There are six types of transport.\
-Bike, Car, Nano, HiAce, Bus and Train.\
-We have used private route. So, without login, user cannot input destination.\
-There are two ways to Login. Login with google and another way is login with email and password.\
-User can input pickup place, destination place, time and date.\
-We have integrated google maps.
+There are six types of transport. Bike, Car, Nano, HiAce, Bus and Train.
+
+## Features
+- On the homepage, users can select a vehicle. Without login, user cannot go to destination page.
+- Users can either login with google or email and password.
+- If a user does not have a account, he can create an account with email and password.
+- Login feature is implemented using firebase.
+- User can input pickup place, destination place, time and date. Google maps has been integrated.
+
+Technology Used
+- React.js
+- Firebase
+- Bootstap
 
 
 ## Live Site
