@@ -21,8 +21,8 @@ const Destination = () => {
 
     const location = {
         address: 'Amar Bari: MuhuriGonj',
-        lat: 22.93668,
-        lng: 91.51333,
+        lat: 22.93669,
+        lng: 91.51332,
       }
 
 
