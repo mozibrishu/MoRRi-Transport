@@ -9,7 +9,7 @@ There are six types of transport. Bike, Car, Nano, HiAce, Bus and Train.
 - Login feature is implemented using firebase.
 - User can input pickup place, destination place, time and date. Google maps has been integrated.
 
-Technology Used
+## Technology Used
 - React.js
 - Firebase
 - Bootstap
