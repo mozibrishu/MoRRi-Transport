@@ -12,7 +12,7 @@ There are six types of transport. Bike, Car, Nano, HiAce, Bus and Train.
 ## Technology Used
 - React.js
 - Firebase
-- Bootstap
+- Bootstrap
 
 
 ## Live Site
